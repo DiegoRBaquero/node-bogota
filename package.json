@@ -1,5 +1,5 @@
 {
-  "name": "node-bogota",
+  "name": "bogota",
   "version": "0.0.1",
   "description": "Bogotá como módulo JS",
   "main": "index.js",
