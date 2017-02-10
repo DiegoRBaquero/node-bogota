@@ -1,7 +1,7 @@
 {
   "name": "bogota",
   "description": "Run tape in parallel with tap-spec output",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Diego Rodríguez Baquero <diegorbaquero@gmail.com> (https://diegorbaquero.com)",
   "bin": {
     "bogota": "./bin/cmd.js"
