@@ -10,7 +10,6 @@ function Bogota (paths) {
 
   let hm = paths.length
 
-  console.log(paths)
   paths.forEach(path => {
     glob(path, (err, files) => {
       if (err) console.error(err)
@@ -28,7 +27,7 @@ function Bogota (paths) {
     })
 
     process.stderr.on('data', err => {
-      console.error(err)
+      console.error(err.toString())
     })
 
     process.on('exit', () => {
