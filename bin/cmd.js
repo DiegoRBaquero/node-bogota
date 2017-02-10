@@ -1,3 +1,13 @@
-/**
- * Created by diego on 10/2/17.
- */
+#!/usr/bin/env node
+
+const bogota = require('../index')
+
+const argv = process.argv
+
+if (argv.length <= 2) {
+  console.log(`Please specify a path like 'test/*.js'`)
+}
+
+const paths = argv.slice(2)
+
+bogota(paths)
