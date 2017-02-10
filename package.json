@@ -1,23 +1,36 @@
 {
   "name": "bogota",
+  "description": "Run tape in parallel with tap-spec output",
   "version": "0.0.1",
-  "description": "Bogotá como módulo JS",
-  "main": "index.js",
-  "scripts": {
-    "test": "standard && node test"
+  "author": "Diego Rodríguez Baquero <diegorbaquero@gmail.com> (https://diegorbaquero.com)",
+  "bin": {
+    "bogota": "./bin/cmd.js"
   },
+  "bugs": {
+    "url": "https://github.com/DiegoRBaquero/node-bogota/issues"
+  },
+  "dependencies": {
+    "glob": "^7.1.1",
+    "tap-spec": "^4.1.1"
+  },
+  "homepage": "https://github.com/DiegoRBaquero/node-bogota",
+  "keywords": [
+    "bogota",
+    "parallel",
+    "tap",
+    "tap-spec",
+    "tape",
+    "test",
+    "testing",
+    "tests"
+  ],
+  "license": "MIT",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:DiegoRBaquero/node-bogota.git"
   },
-  "keywords": [
-    "bogota",
-    "colombia"
-  ],
-  "author": "Diego Rodríguez Baquero",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DiegoRBaquero/node-bogota/issues"
-  },
-  "homepage": "https://github.com/DiegoRBaquero/node-bogota"
+  "scripts": {
+    "test": "standard"
+  }
 }
