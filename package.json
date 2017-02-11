@@ -1,6 +1,6 @@
 {
   "name": "bogota",
-  "description": "Run tape tests in parallel with tap-spec output",
+  "description": "Run tape/tap tests concurrently with tap-spec output",
   "version": "1.0.3",
   "author": "Diego Rodríguez Baquero <diegorbaquero@gmail.com> (https://diegorbaquero.com)",
   "bin": {
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/DiegoRBaquero/node-bogota",
   "keywords": [
     "bogota",
-    "parallel",
+    "concurrent",
     "tap",
     "tap-spec",
     "tape",
