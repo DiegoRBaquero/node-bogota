@@ -3,6 +3,8 @@ const tapSpec = require('tap-spec')
 const glob = require('glob')
 const Readable = require('stream').Readable
 
+let codes = 0
+
 function Bogota (paths) {
   const s = new Readable()
   s._read = () => {}
@@ -20,21 +22,26 @@ function Bogota (paths) {
   })
 
   function runTestFile (filename) {
-    const process = spawn('node', [filename])
+    const proc = spawn('node', [filename])
     const data = []
-    process.stdout.on('data', d => {
+    proc.stdout.on('data', d => {
       data.push(d)
     })
 
-    process.stderr.on('data', err => {
+    proc.stderr.on('data', err => {
       console.error(err.toString())
     })
 
-    process.on('exit', () => {
+    proc.on('exit', code => {
       s.push(data.join(''))
+      codes = codes || code
       if (--hm === 0) s.push(null)
     })
   }
 }
+
+process.on('exit', code => {
+  process.exit(code || codes)
+})
 
 module.exports = Bogota
