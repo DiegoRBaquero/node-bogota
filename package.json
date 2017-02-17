@@ -1,10 +1,10 @@
 {
   "name": "bogota",
-  "description": "Run tape/tap tests concurrently with tap-spec output",
+  "description": "Concurrent tape/tap test-files runner with tap-spec output",
   "version": "1.0.4",
   "author": "Diego Rodríguez Baquero <diegorbaquero@gmail.com> (https://diegorbaquero.com)",
   "bin": {
-    "bogota": "./bin/cmd.js"
+    "bogota": "./bin/bogota"
   },
   "bugs": {
     "url": "https://github.com/DiegoRBaquero/node-bogota/issues"
@@ -17,6 +17,7 @@
   "keywords": [
     "bogota",
     "concurrent",
+    "runner",
     "tap",
     "tap-spec",
     "tape",
