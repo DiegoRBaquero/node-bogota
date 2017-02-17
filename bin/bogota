@@ -2,12 +2,11 @@
 
 const bogota = require('../index')
 
-const argv = process.argv
+const paths = process.argv.slice(2)
 
-if (argv.length <= 2) {
-  console.log(`Please specify a path like 'tests/*.js'`)
+if (paths.length === 0) {
+  paths.push('test/**/*.js')
+  paths.push('tests/**/*.js')
 }
-
-const paths = argv.slice(2)
 
 bogota(paths)
