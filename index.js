@@ -36,11 +36,17 @@ function Bogota (paths) {
     process.exit(code || codes)
   })
 
-  function disconnectChilds () {
-    childs.forEach(child => {
-      child.connected && child.disconnect()
-    })
-  }
+  let disconnectChilds = (function () {
+    let once = () => {
+      if (once.called) return true
+      childs.forEach(child => {
+        child.connected && child.disconnect()
+      })
+      once.called = true
+    }
+    once.called = false
+    return once
+  })()
 
   function runFork () {
     const child = fork(path.resolve(__dirname) + '/child.js', [], {stdio: [null, null, null, 'ipc']})
