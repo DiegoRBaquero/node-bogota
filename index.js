@@ -1,11 +1,11 @@
-const spawn = require('child_process').spawn
+const fork = require('child_process').fork
 const tapSpec = require('tap-spec')
 const glob = require('glob')
+const path = require('path')
 const Readable = require('stream').Readable
-const shuffle = require('shuffle-array')
 const uniq = require('uniq')
 
-const cpus = require('os').cpus().length
+const cpus = require('os').cpus().length * 2
 
 function Bogota (paths) {
   let codes = 0
@@ -22,24 +22,37 @@ function Bogota (paths) {
     if (pathFiles.length > 0) fileList = fileList.concat(pathFiles)
   })
 
-  shuffle(uniq(fileList))
+  uniq(fileList)
 
-  for (let i in [...Array(Math.min(cpus, fileList.length)).keys()]) {
-    console.log(++pending, 'ins')
-    runFork(i)
+  let childsToRun = Math.min(cpus, fileList.length)
+  let childs = []
+
+  for (let i = 0; i < childsToRun; i++) {
+    pending++
+    runFork()
   }
 
   process.on('exit', code => {
-    // console.log('parent exit', code || codes)
     process.exit(code || codes)
   })
 
-  function runFork (i) {
-    // console.log('spawning', i)
-    const child = spawn('bogota-fork', [], {stdio: [null, null, null, 'ipc']})
+  function disconnectChilds () {
+    childs.forEach(child => {
+      child.connected && child.disconnect()
+    })
+  }
+
+  function runFork () {
+    const child = fork(path.resolve(__dirname) + '/child.js', [], {stdio: [null, null, null, 'ipc']})
+    childs.push(child)
     let data = []
     child.stdout.on('data', d => {
       if (data.length > 0 && d.includes('#')) {
+        if (fileList.length) {
+          child.send(fileList.pop())
+        } else {
+          disconnectChilds()
+        }
         s.push(data.join(''))
         data = []
       }
@@ -54,27 +67,17 @@ function Bogota (paths) {
       console.error('ERROR', e)
     })
 
-    child.on('message', m => {
-      if (fileList.length) {
-        console.log('sending more to', i)
-        child.send(fileList.pop())
-      } else {
-        child.disconnect()
-      }
-    })
-
     child.on('exit', code => {
-      // console.log('child exit', code)
       s.push(data.join(''))
       codes = codes || code
       if (--pending === 0) s.push(null)
     })
 
-    setTimeout(() => {
-      child.kill()
-    }, 10000).unref()
+    child.send(fileList.pop())
 
-    return child
+    setTimeout(() => {
+      child.connected && child.disconnect()
+    }, 60000).unref()
   }
 }
 
