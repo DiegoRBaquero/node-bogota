@@ -4,8 +4,7 @@
   "version": "2.0.0",
   "author": "Diego Rodríguez Baquero <diegorbaquero@gmail.com> (https://diegorbaquero.com)",
   "bin": {
-    "bogota": "./bin/bogota",
-    "bogota-fork": "./bin/bogota-fork"
+    "bogota": "./bin/bogota"
   },
   "bugs": {
     "url": "https://github.com/DiegoRBaquero/node-bogota/issues"
