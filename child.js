@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 const resolvePath = require('path').resolve
 const cwd = process.cwd()
 
