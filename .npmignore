@@ -22,3 +22,4 @@ jspm_packages
 .idea/
 .npmignore
 package/
+test/
