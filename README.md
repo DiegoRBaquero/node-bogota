@@ -12,7 +12,7 @@ npm install -g bogota
 ```sh
 $ bogota [test/**/*.js]
 ```
-If no path(s) are specified, `bogota` will use `test/**/*.js` and `tests/**/*.js` as paths
+If no path(s) are specified, `bogota` will use `test*.js` `test/**/*.js` and `tests/**/*.js` as paths
 
 ## As a dev dependency
 
