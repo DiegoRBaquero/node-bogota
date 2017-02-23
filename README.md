@@ -30,7 +30,7 @@ npm install -D bogota
     "test": "bogota tests/**/*.js"
   },
   "devDependencies": {
-    "bogota": "^1.0.0",
+    "bogota": "^2.0.0",
     "tape": "^4.6.3"
   }
 }
