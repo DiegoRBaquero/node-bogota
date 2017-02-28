@@ -1,13 +1,14 @@
+const BufferList = require('bl')
 const fork = require('child_process').fork
 const tapSpec = require('tap-spec')
 const glob = require('glob')
 const path = require('path')
 const Readable = require('stream').Readable
 const uniq = require('uniq')
+const os = require('os')
 
-const cpus = require('os').cpus().length * 2
-
-function Bogota (paths) {
+function Bogota (paths, maxChilds) {
+  maxChilds = maxChilds || os.cpus().length * 2
   let codes = 0
   let pending = 0
 
@@ -24,7 +25,7 @@ function Bogota (paths) {
 
   uniq(fileList)
 
-  let childsToRun = Math.min(cpus, fileList.length)
+  let childsToRun = Math.min(maxChilds, fileList.length)
   let childs = []
 
   for (let i = 0; i < childsToRun; i++) {
@@ -51,18 +52,19 @@ function Bogota (paths) {
   function runFork () {
     const child = fork(path.resolve(__dirname) + '/child.js', [], {stdio: [null, null, null, 'ipc']})
     childs.push(child)
-    let data = []
+    let data = new BufferList()
     child.stdout.on('data', d => {
       if (data.length > 0 && d.includes('#')) {
+        console.log('included', data.toString())
         if (fileList.length) {
           child.send(fileList.pop())
         } else {
           disconnectChilds()
         }
-        s.push(data.join(''))
-        data = []
+        s.push(data.toString())
+        data = new BufferList()
       }
-      data.push(d)
+      data.append(d)
     })
 
     child.stderr.on('data', err => {
@@ -74,7 +76,7 @@ function Bogota (paths) {
     })
 
     child.on('exit', code => {
-      s.push(data.join(''))
+      s.push(data.toString())
       codes = codes || code
       if (--pending === 0) s.push(null)
     })
