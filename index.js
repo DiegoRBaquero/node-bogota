@@ -55,7 +55,6 @@ function Bogota (paths, maxChilds) {
     let data = new BufferList()
     child.stdout.on('data', d => {
       if (data.length > 0 && d.includes('#')) {
-        console.log('included', data.toString())
         if (fileList.length) {
           child.send(fileList.pop())
         } else {
