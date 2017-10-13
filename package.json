@@ -16,7 +16,7 @@
     "uniq": "^1.0.1"
   },
   "devDependencies": {
-    "standard": "^9.0.0",
+    "standard": "^10.0.3",
     "tape": "^4.6.3"
   },
   "engine-strict": true,

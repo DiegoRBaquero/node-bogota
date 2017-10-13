@@ -1,4 +1,5 @@
-# bogota [![npm](https://img.shields.io/npm/v/bogota.svg)](https://npmjs.org/package/bogota) [![downloads](https://img.shields.io/npm/dm/bogota.svg)](https://npmjs.org/package/bogota) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![npm](https://img.shields.io/npm/l/bogota.svg)](LICENSE)
+# bogota [![npm](https://img.shields.io/npm/v/bogota.svg)](https://npmjs.org/package/bogota) [![downloads](https://img.shields.io/npm/dm/bogota.svg)](https://npmjs.org/package/bogota) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![npm](https://img.shields.io/npm/l/bogota.svg)](LICENSE) [![Greenkeeper badge](https://badges.greenkeeper.io/DiegoRBaquero/bogota.svg)](https://greenkeeper.io/)
+
 Concurrent tape test-files runner with `tap-spec` output
 
 **Requires NodeJS v6+**
