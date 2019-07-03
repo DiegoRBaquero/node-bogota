@@ -10,7 +10,7 @@
     "url": "https://github.com/DiegoRBaquero/bogota/issues"
   },
   "dependencies": {
-    "bl": "^2.0.1",
+    "bl": "^3.0.0",
     "glob": "^7.1.1",
     "tap-spec": "^5.0.0",
     "uniq": "^1.0.1"
