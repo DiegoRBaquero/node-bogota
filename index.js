@@ -50,7 +50,7 @@ function Bogota (paths, maxChilds) {
   })()
 
   function runFork () {
-    const child = fork(path.resolve(__dirname) + '/child.js', [], {stdio: [null, null, null, 'ipc']})
+    const child = fork(path.resolve(__dirname) + '/child.js', [], { stdio: [null, null, null, 'ipc'] })
     childs.push(child)
     let data = new BufferList()
     child.stdout.on('data', d => {
