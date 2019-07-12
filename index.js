@@ -25,8 +25,8 @@ function Bogota (paths, maxChilds) {
 
   uniq(fileList)
 
-  let childsToRun = Math.min(maxChilds, fileList.length)
-  let childs = []
+  const childsToRun = Math.min(maxChilds, fileList.length)
+  const childs = []
 
   for (let i = 0; i < childsToRun; i++) {
     pending++
@@ -37,8 +37,8 @@ function Bogota (paths, maxChilds) {
     process.exit(code || codes)
   })
 
-  let disconnectChilds = (function () {
-    let once = () => {
+  const disconnectChilds = (function () {
+    const once = () => {
       if (once.called) return true
       childs.forEach(child => {
         child.connected && child.disconnect()
