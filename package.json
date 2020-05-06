@@ -13,7 +13,8 @@
     "bl": "^3.0.0",
     "glob": "^7.1.1",
     "tap-spec": "^5.0.0",
-    "uniq": "^1.0.1"
+    "uniq": "^1.0.1",
+    "snyk": "^1.319.1"
   },
   "devDependencies": {
     "standard": "^14.0.0",
@@ -43,6 +44,9 @@
   },
   "scripts": {
     "pretest": "standard",
-    "test": "node bin/bogota"
-  }
+    "test": "node bin/bogota",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
